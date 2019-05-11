@@ -1,20 +1,27 @@
 <!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Posts</title>
+    <!-- Latest compiled and minified CSS -->
+
+
+    <link rel="stylesheet" href="{% static "css/blog.css"%}">
+
   </head>
   <body>
-    <div>
-    <h1><a href="/">Django Blog</a></h1>
-    {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-</div>
-{{posts}}
-  </body>
+    {% block content %}
+          {% for post in posts %}
+              <div class="post">
+                  <div class="date">
+                      <p>published: {{ post.published_date }}</p>
+                  </div>
+                  <h2><a href="">{{ post.title }}</a></h2>
+                  <p>{{ post.text|linebreaksbr }}</p>
+              </div>
+          {% endfor %}
+          {% endblock %}
+      </body>
 </html>
